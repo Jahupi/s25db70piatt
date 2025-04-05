@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the best website ever, #{title}
+
+  p #{query.rows} and #{query.cols}
+  - var rows = Number(query.rows)
+  - var col = Number(query.cols)
+
+  if Number.isInteger(rows) && Number.isInteger(col)
+    if rows>13 || rows<3 || col>13 || rows<3
+      p Rows/Cols out of range!
+    else 
+      table#outer
+        - for(let i=0; i<rows; i++){
+            tr#middle
+              - for(let j=0; j<col; j++){
+                  td=i-j
+              - }
+        - }
+  else 
+    p Not an integer!

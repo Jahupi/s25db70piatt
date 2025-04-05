@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the best website ever, #{title}
+
+  - var image_names = ["pic1.jpg", "pic2.jpg", "pic3.jpg", "pic4.jpg", "pic5.jpg"]
+
+  - for (var i=0; i<3; i++){
+      - var rand = Math.floor(Math.random()*5)
+      - var imageName = image_names[rand]
+      img(src=`/images/${imageName}` alt=`Image of ${imageName.split('.')[0]}` height="150" width="150")
+  - }

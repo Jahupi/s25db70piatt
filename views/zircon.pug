@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the best website ever, #{title}
+
+  - var results = [{ name: "clarity", value: "Perfect" }, { name: "origin", value: "Sri Lanka" }, { name: "hardness", value: 7 }]
+
+  div(class="container-fluid")
+  div(class="row")
+  each item in results
+    div(class="col-sm-2")
+      p Name: #{item.name}
+      p Value: #{item.value}
