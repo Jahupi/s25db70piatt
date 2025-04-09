@@ -1,4 +1,5 @@
 var Zircon = require('../models/zircon');
+
 // List of all zircon
 exports.zircon_list = async function(req, res) {
     try{
@@ -10,6 +11,19 @@ exports.zircon_list = async function(req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+
+// VIEWS
+// Handle a show all view
+exports.zircon_view_all_Page = async function(req, res) {
+    try{
+    theZircons = await Zircon.find();
+    res.render('zircon', { title: 'Zircon Search Results', results: theZircons });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
 
 // for a specific zircon.
 exports.zircon_detail = function(req, res) {

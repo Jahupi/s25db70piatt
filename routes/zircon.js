@@ -1,9 +1,6 @@
 var express = require('express');
+const zircon_controlers = require('../controllers/zircon');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('zircon', { title: 'Search Results: Zircon' });
-});
-
+/* GET zircons */
+router.get('/', zircon_controlers.zircon_view_all_Page );
 module.exports = router;
