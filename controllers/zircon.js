@@ -30,9 +30,25 @@ exports.zircon_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: Zircon detail: ' + req.params.id);
 };
 // Handle zircon create on POST.
-exports.zircon_create_post = function(req, res) {
-res.send('NOT IMPLEMENTED: Zircon create POST');
-};
+exports.zircon_create_post = async function(req, res) {
+console.log(req.body)
+let document = new Zircon();
+// We are looking for a body, since POST does not have query parameters.
+// Even though bodies can be in many different formats, we will be picky
+// and require that it be a json object
+// {"zircon_type":"goat", "cost":12, "size":"large"}
+document.zircon_type = req.body.purity;
+document.cost = req.body.origin;
+document.size = req.body.hardness;
+try{
+let result = await document.save();
+res.send(result);
+}
+catch(err){
+res.status(500);
+res.send(`{"error": ${err}}`);
+}
+}
 // Handle zircon delete from on DELETE.
 exports.zircon_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Zircon delete DELETE ' + req.params.id);
