@@ -1,8 +1,16 @@
 var Zircon = require('../models/zircon');
 // List of all zircon
-exports.zircon_list = function(req, res) {
-res.send('NOT IMPLEMENTED: Zircon list');
+exports.zircon_list = async function(req, res) {
+    try{
+        theZircons = await Zircon.find();
+        res.send(theZircons);
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
 };
+
 // for a specific zircon.
 exports.zircon_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: Zircon detail: ' + req.params.id);
