@@ -45,7 +45,7 @@ let document = new Zircon();
 // Even though bodies can be in many different formats, we will be picky
 // and require that it be a json object
 // {"zircon_type":"goat", "cost":12, "size":"large"}
-document.purity = req.body.purity;
+document.clarity = req.body.clarity;
 document.origin = req.body.origin;
 document.hardness = req.body.hardness;
 try{
@@ -68,8 +68,8 @@ ${JSON.stringify(req.body)}`)
 try {
 let toUpdate = await Zircon.findById( req.params.id)
 // Do updates of properties
-if(req.body.purity)
-toUpdate.purity = req.body.purity;
+if(req.body.clarity)
+toUpdate.clarity = req.body.clarity;
 if(req.body.origin) toUpdate.origin = req.body.origin;
 if(req.body.hardness) toUpdate.hardness = req.body.hardness;
 let result = await toUpdate.save();
