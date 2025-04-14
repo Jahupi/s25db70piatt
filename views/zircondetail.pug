@@ -2,19 +2,19 @@ extends layout
 block content
     h1= title
     - let zirconid = toShow._id
-    - let zircon_type = toShow.zircon_type
-    - let zirconcost = toShow.cost
-    - let zirconsize = toShow.size
+    - let clarity = toShow.clarity
+    - let zirconorigin = toShow.origin
+    - let zirconhardness = toShow.hardness
     div
         div.row
             div(class='zirconAttr mr-3') Zircon ID is:
             div #{zirconid}
         div.row
             div(class='zirconAttr mr-3') Zircon Type is:
-            div #{zircon_type}
+            div #{clarity}
         div.row
-            div(class='zirconAttr mr-3') Zircon Size is:
-            div #{zirconsize}
+            div(class='zirconAttr mr-3') Zircon hardness is:
+            div #{zirconhardness}
         div.row
-            div(class='zirconAttr mr-3') Zircon Cost is:
-            div #{zirconcost}
+            div(class='zirconAttr mr-3') Zircon origin is:
+            div #{zirconorigin}
