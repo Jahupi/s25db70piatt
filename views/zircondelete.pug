@@ -1,0 +1,49 @@
+extends layout
+block content
+    h1= title
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        - let zirconid = toShow._id
+        - let clarity = toShow.clarity
+        - let zirconorigin = toShow.origin
+        - let zirconhardness = toShow.hardness
+        - let actionid = "/resource/zircon/" + zirconid
+        script let actionid = "#{actionid}"
+        div
+            div.row
+                div(class='zirconAttr mr-3') zircon ID is:
+                div #{zirconid}
+            div.row
+                div(class='zirconAttr mr-3') zircon Type is:
+                div #{clarity}
+            div.row
+                div(class='zirconAttr mr-3') zircon hardness is:
+                div #{zirconhardness}
+            div.row
+                div(class='zirconAttr mr-3') zircon origin is:
+                div #{zirconorigin}
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    script.
+        function cancel() {
+            // Go back to the home page for the zircon collection
+            window.location.href='/zircon'
+        }
+    script.
+        function deleteOnid() {
+            console.log("starting delete")
+            // delete first
+            fetch(actionid, {
+                method: 'DELETE' // Don't need a body for the delete
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Delete succeded")
+                window.location.href='/zircon'
+                // TODO handle body
+                }).catch((error) => {
+                    // TODO handle error
+                    alert("Delete failed " + error )
+                });
+            }

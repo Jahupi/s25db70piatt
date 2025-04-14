@@ -13,4 +13,7 @@ router.get('/create', zircon_controlers.zircon_create_Page);
 /* GET create update page */
 router.get('/update', zircon_controlers.zircon_update_Page);
 
+/* GET delete zircon page */
+router.get('/delete', zircon_controlers.zircon_delete_Page);
+
 module.exports = router;
