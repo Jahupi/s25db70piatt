@@ -100,7 +100,7 @@ failed`);
 exports.zircon_view_one_Page = async function(req, res) {
     console.log("single view for id " + req.query.id)
     try{
-    result = await Zircon.findById( req.query.id)
+    result = await Zircon.findById(req.query.id)
     res.render('zircondetail',
     { title: 'Zircon Detail', toShow: result });
     }
