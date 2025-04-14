@@ -56,11 +56,23 @@ catch(err){
 res.status(500);
 res.send(`{"error": ${err}}`);
 }
-}
-// Handle zircon delete from on DELETE.
-exports.zircon_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: Zircon delete DELETE ' + req.params.id);
 };
+
+
+// Handle Zircon delete on DELETE.
+exports.zircon_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Zircon.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    }
+
+
 //Handle Zircon update form on PUT.
 exports.zircon_update_put = async function(req, res) {
 console.log(`update on id ${req.params.id} with body
