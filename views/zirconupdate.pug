@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    h1= title
+    - let zirconid = toShow._id
+    - let zirconclarity = toShow.zirconclarity
+    - let zirconorigin = toShow.origin
+    - let zirconhardness = toShow.hardness
+    div.row(class='mb-2')
+        div.mr-1 ID is
+        div #{zirconid}
+    - let actionid = "/resource/zircon/" + zirconid
+    form(id='ZirconForm', action= actionid, method="PUT")
+        div.form-group
+            label.zirconAttr(for='zirconclarity') Zircon type
+            input#zirconclarity(type='text', name='zirconclarity', value= zirconclarity )
+        div.form-group
+            label.zirconAttr(for='hardness') Zircon hardness
+            input#hardness(type='text', name='hardness', value= zirconhardness )
+        div.form-group
+            label.zirconAttr(for='origin') Zircon origin
+            input#origin(type='number', name='origin', value= zirconorigin )
+        input(type="submit")
+
+    script.
+        document.forms['ZirconForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            // TODO do something here to show user that form is being submitted
+            fetch(event.target.action, {
+                method: 'PUT',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Update succeded")
+                // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Update failed " + error )
+            });
+        })
