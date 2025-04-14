@@ -7,4 +7,7 @@ router.get('/', zircon_controlers.zircon_view_all_Page );
 /* GET detail zircon page */
 router.get('/detail', zircon_controlers.zircon_view_one_Page);
 
+/* GET create zircon page */
+router.get('/create', zircon_controlers.zircon_create_Page);
+
 module.exports = router;
