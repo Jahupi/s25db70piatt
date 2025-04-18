@@ -2,13 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to the best website ever, #{title}
-
-  - var results = [{ name: "clarity", value: "Perfect" }, { name: "origin", value: "Sri Lanka" }, { name: "hardness", value: 7 }]
-
+  - let items = results
   div(class="container-fluid")
-  div(class="row")
-  each item in results
-    div(class="col-sm-2")
-      p Name: #{item.name}
-      p Value: #{item.value}
+    div(class="row m-1")
+      each item in items 
+        - let destination = `dispatch("/zircon/update?id=${item._id}")`
+        div(class="row-sm-2", class="m-1") Item #{item.clarity}(#{item.origin}) is #{item.hardness}
+          button.btn(class="btn-primary ml-1", onclick=destination) Update
+
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
