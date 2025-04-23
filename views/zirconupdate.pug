@@ -16,10 +16,10 @@ block content
             input#zirconclarity(type='text', name='zirconclarity', value= zirconclarity )
         div.form-group
             label.zirconAttr(for='hardness') Zircon hardness
-            input#hardness(type='text', name='hardness', value= zirconhardness )
+            input#hardness(type='number', name='hardness', value= zirconhardness min="1" max="10")
         div.form-group
             label.zirconAttr(for='origin') Zircon origin
-            input#origin(type='number', name='origin', value= zirconorigin )
+            input#origin(type='text', name='origin', value= zirconorigin )
         input(type="submit")
 
     script.

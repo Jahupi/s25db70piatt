@@ -3,12 +3,18 @@ extends layout
 block content
   h1= title
   - let items = results
+  - let createDestination = `dispatch("/zircon/create")`
+  button.btn(class="btn-primary ml-1", onclick=createDestination) Create
   div(class="container-fluid")
     div(class="row m-1")
       each item in items 
         - let destination = `dispatch("/zircon/update?id=${item._id}")`
+        - let detailDestination = `dispatch("/zircon/detail?id=${item._id}")`
+        - let deleteDestination = `dispatch("/zircon/delete?id=${item._id}")`
         div(class="row-sm-2", class="m-1") Item #{item.clarity}(#{item.origin}) is #{item.hardness}
           button.btn(class="btn-primary ml-1", onclick=destination) Update
+          button.btn(class="btn-primary ml-1", onclick=detailDestination) Details
+          button.btn(class="btn-primary ml-1", onclick=deleteDestination) Delete
 
   script.
     function dispatch(path){
